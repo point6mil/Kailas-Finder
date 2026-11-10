@@ -8,12 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Run Python
-        run: python hello.py
+      - name: Send Discord message
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d '{"content":"✅ GitHub has successfully connected to Discord"}' \
+          "${{ secrets.DISCORD_WEBHOOK }}"
